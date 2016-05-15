@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	makeGrid(16);
 	var color = false;
+	var shades = false;
 	$('#clear').on('click', function(){
 		$('div.grid').remove();
 		do {
@@ -11,17 +12,34 @@ $(document).ready(function() {
 	});
 
 	$('#color').on('click', function(){
+		if ($('#shades').hasClass('highlighted')){
+			$('#shades').removeClass('highlighted');
+			shades = false;
+		}
 		$('#color').toggleClass('highlighted');
 		color? color = false : color = true;
 	});
+
+	$('#shades').on('click', function(){
+		if ($('#color').hasClass('highlighted')){
+			$('#color').removeClass('highlighted');
+			color = false;
+		}
+		$('#shades').toggleClass('highlighted');
+		shades? shades = false : shades = true;
+	})
 		
 	$('#container').on({
 		mouseenter: function () {
 			if (color){
 				$(this).css('background-color', generateColor());
 			}
+			else if (shades){
+				var current = $(this).css('background-color');
+				$(this).css('background-color', darken(current));
+			}
 			else{
-				$(this).css('background-color', 'black');
+				$(this).css('background-color', 'white');
 			}
 		},
 	}, '.square');
@@ -49,4 +67,13 @@ function generateColor(){
 		(Math.floor(Math.random() * 256)) + ',' + 
 		(Math.floor(Math.random() * 256)) + ')';
 
+}
+
+function darken(color){
+	var before = color.match(/\d+/g);
+	var red = parseInt(before[0]) - ((parseInt(before[0]) > 25)? 25: parseInt(before[0]));
+	var green = parseInt(before[1]) - ((parseInt(before[1]) > 25)? 25: parseInt(before[1]));
+	var blue = parseInt(before[2]) - ((parseInt(before[2]) > 25)? 25: parseInt(before[2]));
+	var rgb = 'rgb(' + red + ',' + green + ',' + blue + ')';
+	return rgb;
 }

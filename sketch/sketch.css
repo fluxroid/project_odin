@@ -1,7 +1,7 @@
 .square {
-	background-color: white;
+	background-color: black;
 	display: inline-block;
-	border: 2px solid black;
+	border: 2px solid white;
 }
 
 .highlighted {
@@ -16,6 +16,13 @@
 
 button {
 	margin: 25px 0 25px 0;
+	font-size: 16px;
+	color: white;
+	padding: 10px 20px;
+	background-color: #555555;;
+	border-radius: 4px;
+	outline-color: black;
+
 }
 
 
