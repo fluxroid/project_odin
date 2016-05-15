@@ -1,0 +1,41 @@
+.square {
+	background-color: white;
+	display: inline-block;
+	border: 2px solid black;
+}
+
+.highlighted {
+	font-weight: bold;
+}
+
+#nav {
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+button {
+	margin: 25px 0 25px 0;
+}
+
+
+.container {
+	margin: 0, auto;
+	width: 50%;
+	height: 50%;
+
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div[class*="row"] {
+	width: 800px;
+	margin: 0 auto;
+	background-color: #cccccc
+}
+
+
+
