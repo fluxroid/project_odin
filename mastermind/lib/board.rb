@@ -1,6 +1,6 @@
 module MasterMind
 	class Board
-		attr_reader :grid
+		attr_reader :grid, :code
 	  def initialize(code=[])
 	    @grid = default_grids
 	    @code = code

@@ -26,12 +26,14 @@ module MasterMind
 	end
 
 	def game_over_message(a_win)
+		puts "The code is: " + board.code.join("")
 		return "Congratulations #{player.name} you win!" if a_win
 		return "#{player.name} you lose!"
 	end
 
 	def play
 		#add option to insert own player code and cpu guesses
+		
 		board.current_grid
 		while turn<=12
 			puts ""
