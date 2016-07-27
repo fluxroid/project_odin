@@ -1,21 +1,19 @@
-#module MasterMind
-require_relative "board.rb"
+module MasterMind
 	class Game
 	attr_reader :player, :board, :computer, :turn
-	def initialize(board = Board.new(generate_code))
+	def initialize(player = Player.new(""), board = Board.new(generate_code))
 		@board = board
-		#add a player class
+		@player = player
 		#@computer = Computer.new
 		@turn = 1
 	end
 
 	def solicit_move
-		"#Enter 5 unique letters (case sensitive) a-h"
-		#add a more strict check for valid strings
+		"#{player.name} enter 5 unique letters (case sensitive) a-h"
 	end
 
 	def gets_move(move=gets.chomp)
-		while (move.length!=5)
+		while (move.length!=5 || !correct_input(move))
 			puts "Invalid String"
 			puts solicit_move
 			move=gets.chomp
@@ -23,9 +21,13 @@ require_relative "board.rb"
 		move.split("")
 	end
 
+	def correct_input(move)
+		return move.match(/[a-h]{5}/) && ("a".."h").all?{|c| move.count(c)<=1}
+	end
+
 	def game_over_message(a_win)
-		return "Congratulations you win!" if a_win
-		return "You lose!"
+		return "Congratulations #{player.name} you win!" if a_win
+		return "#{player.name} you lose!"
 	end
 
 	def play
@@ -62,5 +64,4 @@ require_relative "board.rb"
 			letters.shuffle
 	end
 end
-game = Game.new
-game.play
+end

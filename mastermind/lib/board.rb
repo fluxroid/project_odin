@@ -1,5 +1,4 @@
-#module MasterMind
-require_relative "slot.rb"
+module MasterMind
 	class Board
 		attr_reader :grid
 	  def initialize(code=[])
@@ -46,5 +45,5 @@ require_relative "slot.rb"
 	  def default_grids
 	  	Array.new(12){ Array.new(5) {Slot.new} }
 	  end
-
 	end
+end
